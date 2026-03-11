@@ -26,7 +26,7 @@ function App() {
           <Link to="/">Inicio</Link>
           <Link to="/admin">Admin (VIP)</Link>
         </div>
-       <button className={`px-3 py-1 rounded ${user ? 'bg-red-500': 'bg-green-500'}`} onClick={user ? logout : AccessDenied}>
+       <button className={`px-3 py-1 rounded ${user ? 'bg-red-500': 'bg-green-500'}`} onClick={user ? logout : login}>
       {user ? 'Cerrar Sesion': 'Simular Login'}
     </button>
     </nav>
