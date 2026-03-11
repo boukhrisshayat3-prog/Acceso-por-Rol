@@ -10,8 +10,7 @@ import ProtectedRoute from './components/AccesoPorRol/AccesoPorRol'
 
 //pagina de ejemplo
 const Home = () => <h1 className='text-1xl'>Home</h1>
-const Login = () => <h1 className='text-1xl text-indigo-600 font-bold'>Login</h1>
-const Dashboard = () => <h1 className='text-1xl text-red-600'>Dashboard</h1>
+const Login = () => <h1 className='text-1xl text-indigo-600 font-bold'>Panel de Administracion</h1>
 const AccessDenied = () => <h1 className='text-1xl text-red-600'>Acceso Denegado</h1>
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
           <Link to="/">Inicio</Link>
           <Link to="/admin">Admin (VIP)</Link>
         </div>
-       <button className={`px-3 py-1 rounded ${user ? 'bg-red-500': 'bg-green-500'}`} onClick={user ? logout : login}>
+       <button className={`px-3 py-1 rounded ${user ? 'bg-red-500': 'bg-green-500'}`} onClick={user ? logout : AccessDenied}>
       {user ? 'Cerrar Sesion': 'Simular Login'}
     </button>
     </nav>
@@ -39,7 +38,7 @@ function App() {
       {/* Ruta protegida- Envolvemos el componente admin con nuestro Guardaespalda */}
       <Route path="/admin" element={
         <ProtectedRoute isAllowed={!!user} requiredRole="admin" userRole={user?.role}>
-          <Dashboard />
+         <Login />
         </ProtectedRoute>
       } />
     </Routes>
