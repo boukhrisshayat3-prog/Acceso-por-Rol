@@ -1,20 +1,25 @@
 import type React from "react";
 import { Navigate } from "react-router-dom";
-
-interface Props {
-    isAllowed: boolean;
-    children: React.ReactNode; // representa contenido que queremos proteger
-    requiredRole?: 'admin' | 'user';
-    userRole?: 'admin' | 'user';
+interface User {
+    id: number;
+    name: string;
+    role: 'admin' | 'user';
 }
 
-const ProtectedRoute = ({ isAllowed, children, requiredRole, userRole }: Props) => {
-    if (!isAllowed) {
-        return <Navigate to="/login" />;
+interface Props {
+    user: User | null;
+    children: React.ReactNode; // representa contenido que queremos proteger
+    requiredRole?: 'admin' | 'user';
+    
+}
+
+const ProtectedRoute = ({ user, children, requiredRole}: Props) => {
+    if (!user) {
+        return <Navigate to="/login" replace/>;
     }
 
-    if (requiredRole && userRole !== requiredRole) {
-        return <Navigate to="/access-denied" />;
+    if (requiredRole && user.role !== requiredRole) {
+        return <Navigate to="/access-denied" replace/>;
     }
 
     return <>{children}</>;
