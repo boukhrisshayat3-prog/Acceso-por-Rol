@@ -54,6 +54,11 @@ function App() {
       <Route path="/login" element={<Login />}/>
       <Route path="/access-denied" element={<AccessDenied />}/>
       {/* Ruta protegida- Envolvemos el componente admin con nuestro Guardaespalda */}
+      <Route path="/perfil" element={
+        <ProtectedRoute user={user}>
+         <Perfil />
+        </ProtectedRoute>
+      } />
       <Route path="/admin" element={
         <ProtectedRoute user={user} requiredRole="admin">
          <Login />
