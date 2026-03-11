@@ -34,7 +34,7 @@ function App() {
           <Link to="/perfil">Perfil</Link> 
           
         </div>
-        //panel de controle
+      
         <div className='flex gap-2 item-center'>
           <span>{user ? `Hola, ${user.name} (${user.role})` : 'Desconnectado'}</span>
           <button className={`px-3 py-1 rounded ${user?.role === 'user' ? 'bg-green-500': 'bg-blue-500'}`} onClick={loginUser}>
